@@ -1,4 +1,4 @@
-class Video < ApplicationRecord
+class Movie < ApplicationRecord
   belongs_to :user
 
   attribute :count_vote_up, :integer, default: 0

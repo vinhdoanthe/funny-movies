@@ -2,10 +2,10 @@
 
 one:
   user: one
-  video: one
+  movie: one
   value: 1
 
 two:
   user: two
-  video: two
+  movie: two
   value: 1

@@ -1,0 +1,5 @@
+<div class="float-end">
+  <span>Logged in as <%= current_user.username %></span>
+  <%= link_to "Share a movie", new_movie_path, class: "btn btn-outline-primary" %>
+  <%= link_to "Logout", logout_path, data: { turbo_method: :delete }, class: "btn btn-outline-danger" %>
+</div>

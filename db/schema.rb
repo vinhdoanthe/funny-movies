@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_26_174156) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_034254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "movies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "link"
+    t.integer "count_vote_up"
+    t.integer "count_vote_down"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
+    t.index ["user_id"], name: "index_movies_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -21,27 +33,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_174156) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "videos", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "link"
-    t.integer "count_vote_up"
-    t.integer "count_vote_down"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_videos_on_user_id"
-  end
-
   create_table "votes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "video_id", null: false
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "movie_id"
+    t.index ["movie_id"], name: "index_votes_on_movie_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
-    t.index ["video_id"], name: "index_votes_on_video_id"
   end
 
-  add_foreign_key "videos", "users"
+  add_foreign_key "movies", "users"
+  add_foreign_key "votes", "movies"
   add_foreign_key "votes", "users"
-  add_foreign_key "votes", "videos"
 end
