@@ -10,10 +10,10 @@ class MoviesController < ApplicationController
     @movie.user = current_user
     if MoviesServices.create(@movie)
       flash[:success] = "Movie created successfully"
-      redirect_to root_path
+      redirect_to movies_path
     else
-      flash[:error] = "Movie could not be created ${movie.errors.full_messages}"
-      render :new
+      flash.now[:danger] = "Movie could not be created #{@movie.errors.full_messages}"
+      render :new, status: :unprocessable_entity
     end
   end
 
