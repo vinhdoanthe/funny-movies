@@ -1,5 +1,15 @@
-<% @movies.each do |movie| %>
+<% if @movies.empty? %>
   <div class="row">
-    <%= render movie %>
+    <div class="col-md-12">
+      <div class="alert alert-info">
+        <p>There are no movies.</p>
+      </div>
+    </div>
   </div>
+<% else %>
+  <% @movies.each do |movie| %>
+    <div class="row">
+      <%= render movie %>
+    </div>
+  <% end %>
 <% end %>

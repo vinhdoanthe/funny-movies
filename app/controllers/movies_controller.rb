@@ -8,10 +8,11 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     @movie.user = current_user
-    if @movie.save
+    if MoviesServices.create(@movie)
       flash[:success] = "Movie created successfully"
       redirect_to root_path
     else
+      flash[:error] = "Movie could not be created ${movie.errors.full_messages}"
       render :new
     end
   end

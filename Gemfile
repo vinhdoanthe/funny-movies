@@ -77,3 +77,5 @@ end
 gem "dotenv-rails", "~> 2.8"
 
 gem "bcrypt", "~> 3.1"
+
+gem "video_info", "~> 4.0"
