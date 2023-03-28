@@ -1,16 +1,11 @@
 <% if @movies.empty? %>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="alert alert-info">
-        <p>There are no movies.</p>
-      </div>
-    </div>
+  <div class="alert alert-info">
+    <p>There are no movies.</p>
+  </div>
   </div>
 <% else %>
   <% @movies.each do |movie| %>
-    <div class="row">
-      <%= render movie %>
-    </div>
+    <%= render movie %>
   <% end %>
 
   <%== pagy_bootstrap_nav(@pagy) %>

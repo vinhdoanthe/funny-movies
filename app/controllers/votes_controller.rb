@@ -4,34 +4,51 @@ class VotesController < ApplicationController
   before_action :set_vote, only: [:destroy]
 
   def create
-    # TODO check if the user has already voted for this movie
-
     if VotesServices.vote(vote_params, current_user)
-      # TODO render js
-      flash[:success] = "Vote created successfully"
-      redirect_to movies_path
+      @movie = Movie.find(vote_params[:movie_id])
+      respond_to do |format|
+        format.turbo_stream
+        format.html do
+          flash[:success] = "Vote created successfully"
+          redirect_to movies_path
+        end
+      end
     else
-      # TODO render js
-      flash.now[:danger] = "Vote could not be created"
-      redirect_to movies_path, status: :unprocessable_entity
+      respond_to do
+        format.html do
+          flash.now[:danger] = "Vote could not be created"
+          redirect_to movies_path, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   def destroy
     if @vote&.can_be_deleted_by?(current_user)
+      @movie = @vote.movie
       if @vote.destroy
-        # TODO render js
-        flash[:success] = "Unvote successfully"
-        redirect_to movies_path
+        respond_to do |format|
+          format.turbo_stream
+          format.html do
+            flash[:success] = "Unvote successfully"
+            redirect_to movies_path
+          end
+        end
       else
-        # TODO render js
-        flash.now[:danger] = "Unvote could not be performed"
-        redirect_to movies_path, status: :unprocessable_entity
+        respond_to do |format|
+          format.html do
+            flash.now[:danger] = "Unvote could not be performed"
+            redirect_to movies_path, status: :unprocessable_entity
+          end
+        end
       end
     else
-      # TODO render js
-      flash.now[:danger] = "You can only unvote your own votes"
-      redirect_to movies_path, status: :unprocessable_entity
+      respond_to do |format|
+        format.html do
+          flash.now[:danger] = "You can only unvote your own votes"
+          redirect_to movies_path, status: :unprocessable_entity
+        end
+      end
     end
   end
 
