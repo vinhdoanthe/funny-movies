@@ -18,9 +18,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    # TODO prefetch the user
     # TODO prefetch the votes
-    @movies = Movie.all
+    @movies = Movie.includes(:user).order(created_at: :desc)
   end
 
   private

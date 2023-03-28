@@ -1,16 +1,30 @@
 <% if current_user %>
-  <div class="col">
-    <h1 class="card-title">
-      <a class="icon-link" href="#">
-        <i class="bi bi-hand-thumbs-up"></i>
-      </a>
-    </h1>
-  </div>
-  <div class="col">
-    <h1 class="card-title">
-      <a class="icon-link" href="#">
-        <i class="bi bi-hand-thumbs-down"></i>
-      </a>
-    </h1>
-  </div>
+  <% if not user_vote?(movie) %>
+    <div class="col">
+      <h1 class="card-title">
+        <%= link_to '<i class="bi bi-hand-thumbs-up"></i>'.html_safe, votes_path(movie_id: movie.id, value: VotesHelper::VOTE_UP_VALUE), data: { "turbo-method": "post" } %>
+      </h1>
+    </div>
+    <div class="col">
+      <h1 class="card-title">
+        <%= link_to '<i class="bi bi-hand-thumbs-down"></i>'.html_safe, votes_path(movie_id: movie.id, value: VotesHelper::VOTE_DOWN_VALUE), data: { "turbo-method": "post" } %>
+      </h1>
+    </div>
+  <% else %>
+    <% if user_vote_up?(movie) %>
+      <div class="col">
+        <h1 class="card-title">
+          <%= link_to '<i class="bi bi-hand-thumbs-up-fill"></i>'.html_safe, votes_path(movie_id: movie.id), data: { "turbo-method": "delete" } %>
+        </h1>
+      </div>
+
+    <% elsif user_vote_down?(movie) %>
+      <div class="col">
+        <h1 class="card-title">
+          <%= link_to '<i class="bi bi-hand-thumbs-down-fill"></i>'.html_safe, votes_path(movie_id: movie.id), data: { "turbo-method": "delete" } %>
+        </h1>
+      </div>
+
+    <% end %>
+  <% end %>
 <% end %>
