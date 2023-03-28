@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user! , only: [:new, :create]
 
   def new
@@ -19,7 +21,7 @@ class MoviesController < ApplicationController
 
   def index
     # TODO prefetch the votes
-    @movies = Movie.includes(:user).order(created_at: :desc)
+    @pagy, @movies = pagy(Movie.includes(:user).order(created_at: :desc))
   end
 
   private
