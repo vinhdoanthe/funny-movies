@@ -2,12 +2,17 @@
 
 one:
   user: one
-  link: MyString
-  count_vote_up: 1
-  count_vote_down: 1
-
+  link: "https://www.youtube.com/watch?v=9bZkp7q19f0"
+  title: "test title"
+  description: "test description"
+  embed_code: '<iframe width="1280" height="720" src="https://www.youtube.com/embed/9bZkp7q19f0" title="PSY - GANGNAM STYLE(강남스타일) M/V" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+  count_vote_up: 0
+  count_vote_down: 0
 two:
-  user: two
-  link: MyString
-  count_vote_up: 1
-  count_vote_down: 1
+  user: one
+  link: "https://www.youtube.com/watch?v=9bZkp7q19f0"
+  title: "test title"
+  description: "test description"
+  embed_code: '<iframe width="1280" height="720" src="https://www.youtube.com/embed/9bZkp7q19f0" title="PSY - GANGNAM STYLE(강남스타일) M/V" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+  count_vote_up: 0
+  count_vote_down: 0

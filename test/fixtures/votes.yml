@@ -4,7 +4,6 @@ one:
   user: one
   movie: one
   value: 1
-
 two:
   user: two
   movie: two
