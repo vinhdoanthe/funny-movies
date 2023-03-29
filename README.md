@@ -38,7 +38,7 @@ To run tests, try
 rails test
 ```
 
-## Something could be improved
+## Things could be improved
 - Improve the solution checking whether user voted for a movie 
 - Use ActiveJob with Sidekiq to handle the movie sharing job 
 - Use Redis to cache the data of the most frequent requested movies
