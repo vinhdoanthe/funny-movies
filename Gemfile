@@ -81,3 +81,5 @@ gem "bcrypt", "~> 3.1"
 gem "video_info", "~> 4.0"
 
 gem "pagy", "~> 6.0"
+
+gem "sqlite3", "~> 1.6", :groups => [:development, :test]

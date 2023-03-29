@@ -41,3 +41,6 @@
 
 # Postgres data folder (for local development)
 postgres_data
+
+# SQLite database
+*.sqlite3
