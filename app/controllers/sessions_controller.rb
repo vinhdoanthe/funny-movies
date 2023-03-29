@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         flash[:success] = "User is created successfully"
       else
-        flash[:danger] = "Failed to create new user. Error messages: #{ @user.errors.full_messages }"
+        flash[:danger] = helpers.build_error_message(@user.errors.full_messages)
       end
     end
 
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to sign_in_path
+    redirect_to root_path
   end
 
   private

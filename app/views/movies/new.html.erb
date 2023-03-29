@@ -2,6 +2,16 @@
   <div class="card-header">
     <h3 class="card-title">Share a YouTube video</h3>
   </div>
+  <% if @movie.errors.any? %>
+    <div style="color: red">
+      <h2>There were some errors:</h2>
+      <ul>
+        <% @movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="card-body">
     <%= form_with model: @movie do |f| %>
       <div class="mb-3 row">

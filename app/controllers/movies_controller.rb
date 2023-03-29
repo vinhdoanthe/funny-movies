@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
       flash[:success] = "Movie created successfully"
       redirect_to movies_path
     else
-      flash.now[:danger] = "Movie could not be created #{@movie.errors.full_messages}"
+      # flash.now[:danger] = "Movie could not be created #{@movie.errors.full_messages}"
       render :new, status: :unprocessable_entity
     end
   end
